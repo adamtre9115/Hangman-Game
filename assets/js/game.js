@@ -3,28 +3,10 @@ var artists = ["Aaliyah", "Alicia Keys", "Jagged Edge", "Pharrell", "Beyonce", "
 var word ;
 // Guesses in game
 var guessRemain = 15;
+var userGuess ;
 var guessed = [];
 var wins = 0;
 var losses = 0;
-
-// run game when any key is pressed
-
-document.onkeyup = function(event) {
-    // randomly choose an artist
-        newArtist();
-    // number of guesses start at 15 and decrease
-        guessCount();
-        
-    // display underscores in amount of random artist name
-        underscore();
-    // as guess is correct display letter 
-
-    // guess count decrease as guess continues
-        
-    // display guessed letters
-
-   
-} 
 
 // randomly select new artist
 function newArtist(){
@@ -38,6 +20,10 @@ function guessCount(){
     var count = document.querySelector("#guessLeft");
     count.innerHTML = guessRemain;
     count.onkeyup = guessRemain -= 1;
+    if (guessRemain < 1) {
+        document.getElementById('artistImg').src="assets/images/over.png";
+        alert("Looks like the game is over!");
+    }
 }
 
 // display underscores in amount of random artist name
@@ -60,3 +46,26 @@ function underscore() {
        newUL.appendChild(space);
    }
 }
+
+// as guess is correct display letter
+   
+// run game when any key is pressed
+
+document.onkeyup = function(event) {
+    // randomly choose an artist
+        newArtist();
+    // number of guesses start at 15 and decrease
+        guessCount();
+        
+    // display underscores in amount of random artist name
+        // changes spaces to hyphens
+        word = word.replace(/\s/g, "-");
+        underscore();
+    // as guess is correct display letter 
+        
+    // guess count decrease as guess continues
+        
+    // display guessed letters
+
+   
+} 
