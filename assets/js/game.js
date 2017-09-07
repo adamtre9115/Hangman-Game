@@ -1,5 +1,5 @@
 // array of artists from 2000s
-var artists = ["Aaliyah", "Alicia Keys", "Jagged Edge", "Pharrell", "Beyonce", "Usher", "Terror Squad", "Yung Joc", "R Kelly", "50 Cent", "Maxwell"]
+var artists = ["aaliyah", "alicia keys", "jagged edge", "pharrell", "beyonce", "usher", "terror squad", "yung joc", "r kelly", "50 cent", "maxwell"]
 var chosenWord = "";
 var wordLenth = [];
 var blanksNeeded = 0;
@@ -54,23 +54,99 @@ function guessedLetters(){
 // guess count starts at 10 and decreases on each guess
 function guessCount(){
     var count = document.querySelector("#guessLeft");
-    var loseCount = document.querySelector("#loss");
     count.innerHTML = guessRemain;
     count.onkeyup = guessRemain --;
 }
 
 function winLose() {
-    if (guessRemain < 1) {
-        // show game loss 
-        document.getElementById('artistImg').src="assets/images/over.png";
+    var loseCount = document.querySelector("#loss");
+    if (guessRemain < 1 && chosenWord === "alicia keys") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/aliciaKeys.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
         
-    } 
+    } else if (guessRemain < 1 && chosenWord === "aaliyah") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/aaliyah.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+
+    } else if (guessRemain < 1 && chosenWord === "jagged edge") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/jagged.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "pharrell") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/pharrell.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "beyonce") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/beyonce.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "usher") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/usher.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "terror squad") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/terrorsquad.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "yung joc") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/yungjoc.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "r kelly") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/rkelly.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "50 cent") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/50cent.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    } else if (guessRemain < 1 && chosenWord === "maxwell") {
+        // show game loss
+        document.getElementById('artistImg').src="assets/images/maxwell.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+    }
 }
 
+// document.getElementById('artistImg').src="assets/images/over.png";
+// alert("Looks like the game is over!");
+// // update loss count
+// losses++;
+// loseCount.innerHTML = losses;
 
 
 // as guess is correct display letter
