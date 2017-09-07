@@ -12,14 +12,14 @@ var wins = 0;
 var losses = 0;
 
 
-function playGame(){
+function playGame() {
     // randomly choose an artist
     // display underscores in amount of random artist name
     newArtist();
 }
 
 // randomly select new artist
-function newArtist(){
+function newArtist() {
     chosenWord = artists[Math.floor(Math.random() * artists.length)];
     console.log(chosenWord);
 
@@ -31,20 +31,24 @@ function newArtist(){
     // add underscores for each letter in word
     for (var i = 0; i < blanksNeeded; i++) {
         // replace spaces with - else use _
-        if (wordLenth[i] === "-") {
-            blankShow.push("-");
+        if (wordLenth[i] === "-" || wordLenth[i] === " ") {
+            blankShow.push("&nbsp;");
+            console.log(blankShow)
         } else {
             blankShow.push("_");
+            console.log(blankShow)
+            
         }
         wordSpace.innerHTML = blankShow;
     }
     // remove commas from split
-    wordSpace.innerHTML = blankShow.join(" ");
+    var stringWord = blankShow.join();
+    wordSpace.innerHTML = stringWord.replace(/,/g , "&nbsp;");
 
 }
 
 // show guessed letters
-function guessedLetters(){
+function guessedLetters() {
     show = document.querySelector("#guessedL");
     userGuess = event.key;
     guessed.push(userGuess);
@@ -52,25 +56,25 @@ function guessedLetters(){
 }
 
 // guess count starts at 10 and decreases on each guess
-function guessCount(){
+function guessCount() {
     var count = document.querySelector("#guessLeft");
     count.innerHTML = guessRemain;
-    count.onkeyup = guessRemain --;
+    count.onkeyup = guessRemain--;
 }
 
 function winLose() {
     var loseCount = document.querySelector("#loss");
     if (guessRemain < 1 && chosenWord === "alicia keys") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/aliciaKeys.jpg";
+        document.getElementById('artistImg').src = "assets/images/aliciaKeys.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
-        
+
     } else if (guessRemain < 1 && chosenWord === "aaliyah") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/aaliyah.jpg";
+        document.getElementById('artistImg').src = "assets/images/aaliyah.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
@@ -78,63 +82,63 @@ function winLose() {
 
     } else if (guessRemain < 1 && chosenWord === "jagged edge") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/jagged.jpg";
+        document.getElementById('artistImg').src = "assets/images/jagged.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "pharrell") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/pharrell.jpg";
+        document.getElementById('artistImg').src = "assets/images/pharrell.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "beyonce") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/beyonce.jpg";
+        document.getElementById('artistImg').src = "assets/images/beyonce.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "usher") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/usher.jpg";
+        document.getElementById('artistImg').src = "assets/images/usher.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "terror squad") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/terrorsquad.jpg";
+        document.getElementById('artistImg').src = "assets/images/terrorsquad.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "yung joc") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/yungjoc.jpg";
+        document.getElementById('artistImg').src = "assets/images/yungjoc.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "r kelly") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/rkelly.jpg";
+        document.getElementById('artistImg').src = "assets/images/rkelly.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "50 cent") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/50cent.jpg";
+        document.getElementById('artistImg').src = "assets/images/50cent.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "maxwell") {
         // show game loss
-        document.getElementById('artistImg').src="assets/images/maxwell.jpg";
+        document.getElementById('artistImg').src = "assets/images/maxwell.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
@@ -150,23 +154,23 @@ function winLose() {
 
 
 // as guess is correct display letter
-   
+
 // run game when any key is pressed
 playGame();
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     // caputures user input
-     guessedLetters();
+    guessedLetters();
     // number of guesses start at 10 and decreases
-        guessCount();
-        winLose();
-    
-    
+    guessCount();
+    winLose();
+
+
     // as guess is correct display letter 
-        
+
     // guess count decrease as guess continues
-        
+
     // display guessed letters
 
-   
-} 
+
+}
