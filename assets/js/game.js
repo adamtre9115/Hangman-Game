@@ -1,66 +1,86 @@
 // array of artists from 2000s
 var artists = ["Aaliyah", "Alicia Keys", "Jagged Edge", "Pharrell", "Beyonce", "Usher", "Terror Squad", "Yung Joc", "R Kelly", "50 Cent", "Maxwell"]
-var word ;
+var chosenWord = "";
+var wordLenth = [];
+var blanksNeeded = 0;
+var blankShow = [];
 // Guesses in game
-var guessRemain = 15;
-var userGuess ;
+var guessRemain = 10;
+var userGuess = "";
 var guessed = [];
 var wins = 0;
 var losses = 0;
 
+
+function playGame(){
+    // randomly choose an artist
+    // display underscores in amount of random artist name
+    newArtist();
+}
+
 // randomly select new artist
 function newArtist(){
-    var artistChoice = artists[Math.floor(Math.random() * artists.length)];
-    word = artistChoice;
-    console.log(word);
+    chosenWord = artists[Math.floor(Math.random() * artists.length)];
+    console.log(chosenWord);
+
+    // display underscores in amount of random artist name
+    wordSpace = document.querySelector("#hold");
+    wordLenth = chosenWord.split("");
+    blanksNeeded = wordLenth.length;
+
+    // add underscores for each letter in word
+    for (var i = 0; i < blanksNeeded; i++) {
+        blankShow.push("_");
+        wordSpace.innerHTML = blankShow;
+    }
+    // remove commas from split
+    wordSpace.innerHTML = blankShow.join(" ");
+
 }
 
-// guess count starts at 15 and decreases on each guess
+// show guessed letters
+function guessedLetters(){
+    show = document.querySelector("#guessedL");
+    userGuess = event.key;
+    guessed.push(userGuess);
+    show.innerHTML = guessed.toString();
+}
+
+// guess count starts at 10 and decreases on each guess
 function guessCount(){
     var count = document.querySelector("#guessLeft");
+    var loseCount = document.querySelector("#loss");
     count.innerHTML = guessRemain;
-    count.onkeyup = guessRemain -= 1;
+    count.onkeyup = guessRemain --;
+}
+
+function winLose() {
     if (guessRemain < 1) {
+        // show game loss 
         document.getElementById('artistImg').src="assets/images/over.png";
         alert("Looks like the game is over!");
-    }
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
+        
+    } 
 }
 
-// display underscores in amount of random artist name
-function underscore() {
-   var wordSpace = document.querySelector("#hold");
-   var newUL = document.createElement("ul");
 
-   for (var i = 0; i < word.length; i++){
-       newUL.setAttribute("id", "wordHold");
-       var space = document.createElement('li');
-       space.setAttribute('class', 'guess');
-       if (word[i] === "-") {
-         space.innerHTML = "-";
-       }else {
-           space.innerHTML = "_";
-       }
-
-       guessed.push(space);
-       wordSpace.appendChild(newUL);
-       newUL.appendChild(space);
-   }
-}
 
 // as guess is correct display letter
    
 // run game when any key is pressed
+playGame();
 
 document.onkeyup = function(event) {
-    // randomly choose an artist
-        newArtist();
-    // number of guesses start at 15 and decrease
+    // caputures user input
+     guessedLetters();
+    // number of guesses start at 10 and decreases
         guessCount();
-        
-    // display underscores in amount of random artist name
-        // changes spaces to hyphens
-        word = word.replace(/\s/g, "-");
-        underscore();
+        winLose();
+    
+    
     // as guess is correct display letter 
         
     // guess count decrease as guess continues
