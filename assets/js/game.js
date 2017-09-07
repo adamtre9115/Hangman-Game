@@ -25,12 +25,17 @@ function newArtist(){
 
     // display underscores in amount of random artist name
     wordSpace = document.querySelector("#hold");
-    wordLenth = chosenWord.split("");
+    wordLenth = chosenWord.replace(/\s/g, "-").split("");
     blanksNeeded = wordLenth.length;
 
     // add underscores for each letter in word
     for (var i = 0; i < blanksNeeded; i++) {
-        blankShow.push("_");
+        // replace spaces with - else use _
+        if (wordLenth[i] === "-") {
+            blankShow.push("-");
+        } else {
+            blankShow.push("_");
+        }
         wordSpace.innerHTML = blankShow;
     }
     // remove commas from split
