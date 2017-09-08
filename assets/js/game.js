@@ -11,6 +11,11 @@ var guessed = [];
 var wins = 0;
 var losses = 0;
 
+// element select 
+var wordSpace = document.querySelector("#hold");
+var show = document.querySelector("#guessedL");
+var count = document.querySelector("#guessLeft");
+var loseCount = document.querySelector("#loss");
 
 function playGame() {
     // randomly choose an artist
@@ -22,9 +27,8 @@ function playGame() {
 function newArtist() {
     chosenWord = artists[Math.floor(Math.random() * artists.length)];
     console.log(chosenWord);
-
     // display underscores in amount of random artist name
-    wordSpace = document.querySelector("#hold");
+    
     wordLenth = chosenWord.replace(/\s/g, "-").split("");
     blanksNeeded = wordLenth.length;
 
@@ -33,10 +37,8 @@ function newArtist() {
         // replace spaces with - else use _
         if (wordLenth[i] === "-" || wordLenth[i] === " ") {
             blankShow.push("&nbsp;");
-            console.log(blankShow)
         } else {
             blankShow.push("_");
-            console.log(blankShow)
             
         }
         wordSpace.innerHTML = blankShow;
@@ -49,21 +51,28 @@ function newArtist() {
 
 // show guessed letters
 function guessedLetters() {
-    show = document.querySelector("#guessedL");
     userGuess = event.key;
     guessed.push(userGuess);
     show.innerHTML = guessed.toString();
 }
 
+// check if letter is correct or already guessed
+function checkLetters() {
+    userGuess = event.key;  
+    if (chosenWord.includes(userGuess)) {
+        // if letter included in chosen word replace underscore with letter
+    }
+}
+
+
 // guess count starts at 10 and decreases on each guess
 function guessCount() {
-    var count = document.querySelector("#guessLeft");
     count.innerHTML = guessRemain;
     count.onkeyup = guessRemain--;
 }
 
 function winLose() {
-    var loseCount = document.querySelector("#loss");
+    
     if (guessRemain < 1 && chosenWord === "alicia keys") {
         // show game loss
         document.getElementById('artistImg').src = "assets/images/aliciaKeys.jpg";
@@ -161,6 +170,7 @@ playGame();
 document.onkeyup = function (event) {
     // caputures user input
     guessedLetters();
+    checkLetters();
     // number of guesses start at 10 and decreases
     guessCount();
     winLose();
