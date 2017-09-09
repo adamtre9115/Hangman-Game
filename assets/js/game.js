@@ -28,7 +28,7 @@ function newArtist() {
     chosenWord = artists[Math.floor(Math.random() * artists.length)];
     console.log(chosenWord);
     // display underscores in amount of random artist name
-    
+
     wordLenth = chosenWord.replace(/\s/g, "-").split("");
     blanksNeeded = wordLenth.length;
 
@@ -39,32 +39,35 @@ function newArtist() {
             blankShow.push("&nbsp;");
         } else {
             blankShow.push("_");
-            
+
         }
         wordSpace.innerHTML = blankShow;
     }
     // remove commas from split
     var stringWord = blankShow.join();
-    wordSpace.innerHTML = stringWord.replace(/,/g , "&nbsp;");
+    wordSpace.innerHTML = stringWord.replace(/,/g, "&nbsp;");
 
 }
 
 // show guessed letters
 function guessedLetters() {
-    userGuess = event.key;
+    // userGuess = event.key;
     guessed.push(userGuess);
     show.innerHTML = guessed.toString();
 }
 
 // check if letter is correct or already guessed
 function checkLetters() {
-    userGuess = event.key;  
-    if (chosenWord.includes(userGuess)) {
-        // if letter included in chosen word replace underscore with letter
-    }
+    // userGuess = event.key;
+    console.log(chosenWord.length);
+    $(chosenWord.split("")).each(function (index, character) {
+        if (character == userGuess) {
+            blankShow[index] = userGuess;
+        }
+    })
 }
 
-
+document.getElementById("hold").innerHTML = "hello" + blankShow.toString();
 // guess count starts at 10 and decreases on each guess
 function guessCount() {
     count.innerHTML = guessRemain;
@@ -72,7 +75,7 @@ function guessCount() {
 }
 
 function winLose() {
-    
+
     if (guessRemain < 1 && chosenWord === "alicia keys") {
         // show game loss
         document.getElementById('artistImg').src = "assets/images/aliciaKeys.jpg";
@@ -169,6 +172,7 @@ playGame();
 
 document.onkeyup = function (event) {
     // caputures user input
+    userGuess = event.key;
     guessedLetters();
     checkLetters();
     // number of guesses start at 10 and decreases
