@@ -23,12 +23,11 @@ var image = document.querySelector("#artistImg");
 var tag = document.querySelector("#tag");
 
 function playGame() {
-
     // randomly choose an artist
-    // display underscores in amount of random artist name
     newArtist();
+    // compensate for extra count needed to correctly identify win
     if (chosenWord === "maxwell" || chosenWord === "jagged edge" || chosenWord === "pharrell") {
-        space +=1;
+        space += 1;
     }
 }
 
@@ -96,27 +95,27 @@ function reset() {
     loseCount.innerHTML = losses;
     blankShow = [];
     userGuess = "";
-    correct= 0;
+    correct = 0;
     space = 0;
     guessed = [];
     show.innerHTML = guessed;
     guessRemain = 12;
-    count.innerHTML = guessRemain; 
+    count.innerHTML = guessRemain;
     image.src = "assets/images/hangman.jpg";
-    tag.innerHTML = "Bet you can't guess the word!";  
+    tag.innerHTML = "Bet you can't guess the word!";
     playGame();
 }
 
 function newGame() {
     blankShow = [];
     userGuess = "";
-    correct= 0;
+    correct = 0;
     space = 0;
     guessed = [];
     show.innerHTML = guessed;
     guessRemain = 12;
-    count.innerHTML = guessRemain; 
-    image.src = "assets/images/hangman.jpg";  
+    count.innerHTML = guessRemain;
+    image.src = "assets/images/hangman.jpg";
     tag.innerHTML = "Bet you can't guess the word!";
     playGame();
 }
@@ -124,7 +123,7 @@ function newGame() {
 function winLose() {
     if (correct + space + 1 >= chosenWord.length && guessRemain > 0) {
         alert("You win!");
-        image.src = "assets/images/winner.gif" 
+        image.src = "assets/images/winner.gif"
         wins++;
         winCount.innerHTML = wins;
         tag.innerHTML = "Click 'New Game' to play again and save progress or 'Reset' to start completely over.";
