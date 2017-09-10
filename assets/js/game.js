@@ -35,7 +35,7 @@ function playGame() {
 // randomly select new artist
 function newArtist() {
     chosenWord = artists[Math.floor(Math.random() * artists.length)];
-    console.log(chosenWord);
+    // console.log(chosenWord);
     // display underscores in amount of random artist name
 
     wordLenth = chosenWord.replace(/\s/g, "-").split("");
@@ -77,7 +77,7 @@ function guessedLetters() {
 // check if letter is correct or already guessed
 function checkLetters() {
     // userGuess = event.key;
-    console.log(chosenWord.length);
+    // console.log(chosenWord.length);
     $(chosenWord.split("")).each(function (index, character) {
         if (character === userGuess) {
             blankShow[index] = userGuess;
