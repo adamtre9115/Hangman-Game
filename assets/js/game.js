@@ -60,9 +60,17 @@ function newArtist() {
 
 // show guessed letters
 function guessedLetters() {
-    // userGuess = event.key;
-    guessed.push(userGuess);
+    // if guessed letter doesn't exist in array 
+    if (guessed.indexOf(userGuess) === -1) {
+        // add it
+        guessed.push(userGuess);
+        // if guessed letter is in array
+    } else if (guessed.indexOf(userGuess) > -1) {
+        // subtract one from correct to compensate for point that is added
+        correct--;
+    }
     show.innerHTML = guessed.toString();
+
 }
 
 // check if letter is correct or already guessed
