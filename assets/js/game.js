@@ -20,12 +20,16 @@ var count = document.querySelector("#guessLeft");
 var loseCount = document.querySelector("#loss");
 var winCount = document.querySelector("#wins");
 var image = document.querySelector("#artistImg");
+var tag = document.querySelector("#tag");
 
 function playGame() {
 
     // randomly choose an artist
     // display underscores in amount of random artist name
     newArtist();
+    if (chosenWord === "maxwell" || chosenWord === "jagged edge" || chosenWord === "pharrell") {
+        space +=1;
+    }
 }
 
 // randomly select new artist
@@ -98,7 +102,8 @@ function reset() {
     show.innerHTML = guessed;
     guessRemain = 12;
     count.innerHTML = guessRemain; 
-    image.src = "assets/images/hangman.jpg";  
+    image.src = "assets/images/hangman.jpg";
+    tag.innerHTML = "Bet you can't guess the word!";  
     playGame();
 }
 
@@ -112,17 +117,17 @@ function newGame() {
     guessRemain = 12;
     count.innerHTML = guessRemain; 
     image.src = "assets/images/hangman.jpg";  
+    tag.innerHTML = "Bet you can't guess the word!";
     playGame();
 }
 
 function winLose() {
-    if (guessRemain < 1 && chosenWord === "alicia keys") {
-        // show game loss
-        image.src = "assets/images/aliciaKeys.jpg";
-        alert("Looks like the game is over!");
-        // update loss count
-        losses++;
-        loseCount.innerHTML = losses;
+    if (correct + space + 1 >= chosenWord.length && guessRemain > 0) {
+        alert("You win!");
+        image.src = "assets/images/winner.gif" 
+        wins++;
+        winCount.innerHTML = wins;
+        tag.innerHTML = "Click 'New Game' to play again and save progress or 'Reset' to start completely over.";
 
     } else if (guessRemain < 1 && chosenWord === "aaliyah") {
         // show game loss
@@ -195,12 +200,13 @@ function winLose() {
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
-    } else if (correct + space + 1 === chosenWord.length && guessRemain > 0) {
-        alert("You win!");
-        image.src = "assets/images/winner.gif" 
-        wins++;
-        winCount.innerHTML = wins;
-
+    } else if (guessRemain < 1 && chosenWord === "alicia keys") {
+        // show game loss
+        image.src = "assets/images/aliciaKeys.jpg";
+        alert("Looks like the game is over!");
+        // update loss count
+        losses++;
+        loseCount.innerHTML = losses;
     }
 }
 
@@ -212,18 +218,13 @@ playGame();
 document.onkeyup = function (event) {
     // caputures user input
     userGuess = event.key.toLowerCase();
-
-
     // number of guesses start at 10 and decreases
     guessCount();
-
+    // state win or loss of game
     winLose();
     // as guess is correct display letter 
     checkLetters();
     // guess count decrease as guess continues
     // display guessed letters
     guessedLetters();
-
-
-
 }
