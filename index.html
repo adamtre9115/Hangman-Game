@@ -12,13 +12,14 @@
     
 </head>
 <body>
-    <section id="top" class="container">
+    <section id="top" class="container top">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center">Hangman!</h1>
 
                 <div class="row">
                     <div class="col-md-12 text-center">
+                        <h2>Best of the 2000s Hiphop & R&B!</h2>
                         <h2>Press any key to begin</h2>
                         <img id="artistImg" class="img-fluid rounded" src="assets/images/hangman.jpg" alt="artist image">
                     </div>
@@ -39,6 +40,10 @@
             <div class="col-md-8 center-panel">
                 <p>Bet you can't guess the word!</p>
                 <div id="hold"></div>
+                <div id="buttons">
+                    <button id="newGame" class="btn" onClick="newGame()">New Game</button>
+                    <button id="reset" class="btn" onClick="reset()">Reset</button>
+                </div>
             </div>
             <div class="col-md-2 right-panel">
                     <p>Wins</p>

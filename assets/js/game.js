@@ -4,8 +4,10 @@ var chosenWord = "";
 var wordLenth = [];
 var blanksNeeded = 0;
 var blankShow = [];
+var correct = 0;
+var space = 0;
 // Guesses in game
-var guessRemain = 10;
+var guessRemain = 12;
 var userGuess = "";
 var guessed = [];
 var wins = 0;
@@ -16,8 +18,11 @@ var wordSpace = document.querySelector("#hold");
 var show = document.querySelector("#guessedL");
 var count = document.querySelector("#guessLeft");
 var loseCount = document.querySelector("#loss");
+var winCount = document.querySelector("#wins");
+var image = document.querySelector("#artistImg");
 
 function playGame() {
+
     // randomly choose an artist
     // display underscores in amount of random artist name
     newArtist();
@@ -37,6 +42,7 @@ function newArtist() {
         // replace spaces with - else use _
         if (wordLenth[i] === "-" || wordLenth[i] === " ") {
             blankShow.push("&nbsp;");
+            space += 1;
         } else {
             blankShow.push("_");
 
@@ -61,24 +67,58 @@ function checkLetters() {
     // userGuess = event.key;
     console.log(chosenWord.length);
     $(chosenWord.split("")).each(function (index, character) {
-        if (character == userGuess) {
+        if (character === userGuess) {
             blankShow[index] = userGuess;
+            wordSpace.innerHTML = blankShow;
+            correct++;
         }
+
     })
+
 }
 
-document.getElementById("hold").innerHTML = "hello" + blankShow.toString();
 // guess count starts at 10 and decreases on each guess
 function guessCount() {
     count.innerHTML = guessRemain;
     count.onkeyup = guessRemain--;
+
+}
+
+// reset the game
+function reset() {
+    wins = 0;
+    winCount.innerHTML = wins;
+    losses = 0;
+    loseCount.innerHTML = losses;
+    blankShow = [];
+    userGuess = "";
+    correct= 0;
+    space = 0;
+    guessed = [];
+    show.innerHTML = guessed;
+    guessRemain = 12;
+    count.innerHTML = guessRemain; 
+    image.src = "assets/images/hangman.jpg";  
+    playGame();
+}
+
+function newGame() {
+    blankShow = [];
+    userGuess = "";
+    correct= 0;
+    space = 0;
+    guessed = [];
+    show.innerHTML = guessed;
+    guessRemain = 12;
+    count.innerHTML = guessRemain; 
+    image.src = "assets/images/hangman.jpg";  
+    playGame();
 }
 
 function winLose() {
-
     if (guessRemain < 1 && chosenWord === "alicia keys") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/aliciaKeys.jpg";
+        image.src = "assets/images/aliciaKeys.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
@@ -86,7 +126,7 @@ function winLose() {
 
     } else if (guessRemain < 1 && chosenWord === "aaliyah") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/aaliyah.jpg";
+        image.src = "assets/images/aaliyah.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
@@ -94,76 +134,75 @@ function winLose() {
 
     } else if (guessRemain < 1 && chosenWord === "jagged edge") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/jagged.jpg";
+        image.src = "assets/images/jagged.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "pharrell") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/pharrell.jpg";
+        image.src = "assets/images/pharrell.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "beyonce") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/beyonce.jpg";
+        image.src = "assets/images/beyonce.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "usher") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/usher.jpg";
+        image.src = "assets/images/usher.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "terror squad") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/terrorsquad.jpg";
+        image.src = "assets/images/terrorsquad.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "yung joc") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/yungjoc.jpg";
+        image.src = "assets/images/yungjoc.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "r kelly") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/rkelly.jpg";
+        image.src = "assets/images/rkelly.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "50 cent") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/50cent.jpg";
+        image.src = "assets/images/50cent.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
     } else if (guessRemain < 1 && chosenWord === "maxwell") {
         // show game loss
-        document.getElementById('artistImg').src = "assets/images/maxwell.jpg";
+        image.src = "assets/images/maxwell.jpg";
         alert("Looks like the game is over!");
         // update loss count
         losses++;
         loseCount.innerHTML = losses;
+    } else if (correct + space + 1 === chosenWord.length && guessRemain > 0) {
+        alert("You win!");
+        image.src = "assets/images/winner.gif" 
+        wins++;
+        winCount.innerHTML = wins;
+
     }
 }
-
-// document.getElementById('artistImg').src="assets/images/over.png";
-// alert("Looks like the game is over!");
-// // update loss count
-// losses++;
-// loseCount.innerHTML = losses;
-
 
 // as guess is correct display letter
 
@@ -172,19 +211,19 @@ playGame();
 
 document.onkeyup = function (event) {
     // caputures user input
-    userGuess = event.key;
-    guessedLetters();
-    checkLetters();
+    userGuess = event.key.toLowerCase();
+
+
     // number of guesses start at 10 and decreases
     guessCount();
+
     winLose();
-
-
     // as guess is correct display letter 
-
+    checkLetters();
     // guess count decrease as guess continues
-
     // display guessed letters
+    guessedLetters();
+
 
 
 }
