@@ -21,6 +21,7 @@ var loseCount = document.querySelector("#loss");
 var winCount = document.querySelector("#wins");
 var image = document.querySelector("#artistImg");
 var tag = document.querySelector("#tag");
+var hint = document.querySelector("#hint");
 
 function playGame() {
     // randomly choose an artist
@@ -111,6 +112,7 @@ function reset() {
     count.innerHTML = guessRemain;
     image.src = "assets/images/hangman.jpg";
     tag.innerHTML = "Bet you can't guess the word!";
+    hint.innerHTML = "Press any key to begin"
     playGame();
 }
 
@@ -223,6 +225,7 @@ function winLose() {
 playGame();
 
 document.onkeyup = function (event) {
+    hint.innerHTML = "Think of the artists from this era"
     // caputures user input
     userGuess = event.key.toLowerCase();
     // number of guesses start at 10 and decreases
